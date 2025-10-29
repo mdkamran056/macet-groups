@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macet Friends Group</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            transform: translateY(-2px);
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s;
+        }
+
+        .hero-image {
+            max-width: 1200px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-top: 30px;
+            transition: all 0.4s ease;
+            animation: fadeInUp 1.2s;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+        }
+
+        .members-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+            animation: fadeIn 0.8s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: white;
+            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .member-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .member-role {
+            color: #667eea;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .member-branch {
+            color: #888;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .about-section {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .about-section p {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: rgba(102, 126, 234, 0.95);
+                width: 100%;
+                padding: 30px;
+                transition: left 0.3s;
+            }
+            .nav-links.active { left: 0; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            .section-title { font-size: 28px; }
+            .members-grid { grid-template-columns: 1fr; }
+            .about-section { margin: 40px 20px; padding: 30px 20px; }
+            .hero-image { max-width: 100%; border-radius: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="tere jaisa yaar kahan.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <nav>
+            <div class="logo">Macet Friends 2K24</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#members">Members</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Welcome to Macet Friends Group</h1>
+        <p>Where friendship meets fun and memories are made!</p>
+        <img src="Macet.jpg" alt="macet img" class="hero-image">
+    </section>
+
+    <section class="members-section" id="members">
+        <h2 class="section-title">Our Amazing Squad</h2>
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-icon"><img src="kamran.png" alt="Md Kamran" class="member-img"></div>
+                <div class="member-name">Md Kamran</div>
+                <div class="member-branch">CSE (Data Science)</div>
+                <div class="member-role">Member</div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-icon"><img src="lucky.png" alt="Kausar Ansari" class="member-img"></div>
+                <div class="member-name">Kausar Ansari</div>
+                <div class="member-branch">CSE</div>
+                <div class="member-role">Member</div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-icon"><img src="adil.jpeg" alt="Md Adil" class="member-img"></div>
+                <div class="member-name">Md Adil</div>
+                <div class="member-branch">CSE</div>
+                <div class="member-role">Member</div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-icon"><img src="saquib.jpeg" alt="Saquib Hussain" class="member-img"></div>
+                <div class="member-name">Saquib Hussain</div>
+                <div class="member-branch">CSE (Data Science)</div>
+                <div class="member-role">Member</div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-icon"><img src="sufiyan.png" alt="Md Sufiyan" class="member-img"></div>
+                <div class="member-name">Md Sufiyan</div>
+                <div class="member-branch">CSE</div>
+                <div class="member-role">Member</div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-icon"><img src="Hammad.jpg" alt="Hammad Alam" class="member-img"></div>
+                <div class="member-name">Hammad Alam</div>
+                <div class="member-branch">CSE</div>
+                <div class="member-role">Member</div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-icon"><img src="afzal.jpeg" alt="Manager" class="member-img"></div>
+                <div class="member-name">Afzal urf Manager</div>
+                <div class="member-branch">AIML</div>
+                <div class="member-role">Manager</div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-icon"><img src="mobassir.png" alt="mobassir" class="member-img"></div>
+                <div class="member-name">Mobassir</div>
+                <div class="member-branch">EEE</div>
+                <div class="member-role">Member</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <h2>About Our Group</h2>
+        <p>Macet Friends Group is a close-knit circle of friends who share incredible moments, support each other through thick and thin, and create memories that last a lifetime. Our bond goes beyond friendship - we're a family united by trust, laughter, and genuine care for one another.</p>
+        <p style="margin-top: 20px;">Together, we celebrate victories, navigate challenges, and make every moment count. This is more than just a group - it's a brotherhood where everyone matters and every friendship is cherished.</p>
+    </section>
+
+    <footer>
+         <p>&copy; 2024 Macet Friends Group. All rights reserved.</p>
+        <p style="margin-top: 10px;">Made with ❤️ by friends, for friends</p>
+    </footer>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 1000;
+        transition: all 0.3s;
+    ">
+        ▶️
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Music Play/Pause Button
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        let isPlaying = false;
+
+        musicToggle.addEventListener('click', () => {
+            if (!isPlaying) {
+                bgMusic.play().catch(err => console.log('Play failed:', err));
+                isPlaying = true;
+                musicToggle.textContent = '🔊';
+            } else {
+                bgMusic.pause();
+                isPlaying = false;
+                musicToggle.textContent = '▶️';
+            }
+        });
+
+        musicToggle.addEventListener('mouseenter', () => musicToggle.style.transform = 'scale(1.1)');
+        musicToggle.addEventListener('mouseleave', () => musicToggle.style.transform = 'scale(1)');
+    </script>
+</body>
+</html>
