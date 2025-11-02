@@ -185,6 +185,128 @@
             margin-top: 5px;
         }
 
+        /* Video Section Styles - UPDATED */
+.video-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 60px 20px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.video-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.8s;
+}
+
+.video-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.video-card video {
+    width: 100%;
+    min-height: 400px;
+    max-height: 500px;
+    object-fit: contain;
+    display: block;
+    background: #000;
+}
+
+.video-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.video-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.video-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Tablet View - 1024px */
+@media (max-width: 1024px) {
+    .video-section {
+        padding: 50px 20px;
+    }
+    
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+/* Mobile View - 768px */
+@media (max-width: 768px) {
+    .video-section {
+        padding: 40px 15px;
+        margin: 40px auto;
+    }
+    
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .video-card video {
+        min-height: 300px;
+        max-height: 400px;
+    }
+    
+    .video-info {
+        padding: 15px;
+    }
+    
+    .video-title {
+        font-size: 16px;
+    }
+    
+    .video-description {
+        font-size: 13px;
+    }
+}
+
+/* Small Mobile - 480px */
+@media (max-width: 480px) {
+    .video-section {
+        padding: 30px 10px;
+    }
+    
+    .video-grid {
+        gap: 15px;
+    }
+    
+    .video-card {
+        border-radius: 12px;
+    }
+
+    .video-card video {
+        min-height: 250px;
+        max-height: 350px;
+    }
+
+    .video-info {
+        padding: 12px;
+    }
+}
+
+        
         .about-section {
             max-width: 800px;
             margin: 60px auto;
@@ -225,6 +347,19 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Tablet View - 1024px */
+        @media (max-width: 1024px) {
+            .video-section {
+                padding: 50px 20px;
+            }
+            
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+        }
+
+        /* Mobile View - 768px */
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -244,15 +379,87 @@
             .members-grid { grid-template-columns: 1fr; }
             .about-section { margin: 40px 20px; padding: 30px 20px; }
             .hero-image { max-width: 100%; border-radius: 15px; }
+
+            /* Video Section Mobile */
+            .video-section {
+                padding: 40px 15px;
+                margin: 40px auto;
+            }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .video-card video {
+                aspect-ratio: 16/9;
+            }
+            
+            .video-info {
+                padding: 15px;
+            }
+            
+            .video-title {
+                font-size: 16px;
+            }
+            
+            .video-description {
+                font-size: 13px;
+            }
+        }
+
+        /* Small Mobile - 480px */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 22px;
+            }
+
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+
+            .member-icon {
+                width: 150px;
+                height: 150px;
+            }
+
+            .member-name {
+                font-size: 20px;
+            }
+
+            /* Video Section Small Mobile */
+            .video-section {
+                padding: 30px 10px;
+            }
+            
+            .video-grid {
+                gap: 15px;
+            }
+            
+            .video-card {
+                border-radius: 12px;
+            }
+
+            .video-info {
+                padding: 12px;
+            }
+
+            .about-section {
+                padding: 25px 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Background Music -->
-    <audio id="bgMusic" loop>
-        <source src="Tere Jaisa Yaar Kahan.mp3" type="audio/mpeg">
-    </audio>
-
     <header>
         <nav>
             <div class="logo">Macet Friends 2K24</div>
@@ -260,6 +467,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#members">Members</a></li>
+                <li><a href="#videos">Videos</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
         </nav>
@@ -275,66 +483,138 @@
         <h2 class="section-title">Our Amazing Squad</h2>
         <div class="members-grid">
             <div class="member-card">
-                <div class="member-icon"><img src="kamran.png" alt="Md Kamran" class="member-img"></div>
+                <div class="member-icon"><img src="kamran.png" alt="MK" class="member-img"></div>
                 <div class="member-name">MD KAMRAN</div>
                 <div class="member-branch">CSE (Data Science)</div>
                 <div class="member-role">Member</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="lucky.png" alt="Kausar Ansari" class="member-img"></div>
+                <div class="member-icon"><img src="lucky.png" alt="KA" class="member-img"></div>
                 <div class="member-name">KAUSAR ANSARI</div>
                 <div class="member-branch">CSE</div>
                 <div class="member-role">Member</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="Adil.jpeg" alt="Md Adil" class="member-img"></div>
+                <div class="member-icon"><img src="Adil.jpeg" alt="MA" class="member-img"></div>
                 <div class="member-name">MD ADIL</div>
                 <div class="member-branch">CSE</div>
                 <div class="member-role">Member</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="saquib.jpeg" alt="Saquib Hussain" class="member-img"></div>
+                <div class="member-icon"><img src="saquib.jpeg" alt="SH" class="member-img"></div>
                 <div class="member-name">SAQUIB HUSSAIN</div>
                 <div class="member-branch">CSE (Data Science)</div>
                 <div class="member-role">Member</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="sufiyan.png" alt="Md Sufiyan" class="member-img"></div>
+                <div class="member-icon"><img src="sufiyan.png" alt="MS" class="member-img"></div>
                 <div class="member-name">MD SUFIYAN</div>
                 <div class="member-branch">CSE</div>
                 <div class="member-role">Member</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="Hammad.jpg" alt="Hammad Alam" class="member-img"></div>
+                <div class="member-icon"><img src="Hammad.jpg" alt="HA" class="member-img"></div>
                 <div class="member-name">HAMMAD ALAM</div>
                 <div class="member-branch">CSE</div>
                 <div class="member-role">Member</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="afzal.jpeg" alt="Manager" class="member-img"></div>
-                <div class="member-name">MOHAMMAD AFZAL MANAGER </div>
+                <div class="member-icon"><img src="afzal.jpeg" alt="MA" class="member-img"></div>
+                <div class="member-name">MOHAMMAD AFZAL MANAGER</div>
                 <div class="member-branch">AIML</div>
-                <div class="member-role">Manager</div>
+                <div class="member-role">MANAGER</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="mobassir.png" alt="mobassir" class="member-img"></div>
+                <div class="member-icon"><img src="mobassir.png" alt="MB" class="member-img"></div>
                 <div class="member-name">MOBASSIR</div>
                 <div class="member-branch">EEE</div>
                 <div class="member-role">Member</div>
             </div>
 
             <div class="member-card">
-                <div class="member-icon"><img src="Kabir.jpeg" alt="Kabir" class="member-img"></div>
+                <div class="member-icon"><img src="Kabir.jpeg" alt="KK" class="member-img"></div>
                 <div class="member-name">KABIR KHAN</div>
                 <div class="member-branch">CSE(Data Science)</div>
                 <div class="member-role">Member</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section - FULLY RESPONSIVE -->
+    <section class="video-section" id="videos">
+        <h2 class="section-title">Our Memories 🎬</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <video controls>
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <div class="video-title">College Days</div>
+                    <div class="video-description">Unforgettable college moments college gave me friends who become family. Things end. But memories last Forever</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <video controls>
+                    <source src="video1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <div class="video-title">Fun Moments</div>
+                    <div class="video-description">Our best memories together</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <video controls>
+                    <source src="video3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <div class="video-title">Adventures</div>
+                    <div class="video-description">Our crazy adventures</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <video controls>
+                    <source src="video4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <div class="video-title">Masti Time🤩</div>
+                    <div class="video-description">Fun with all friends</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <video controls>
+                    <source src="video5.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <div class="video-title">"Time to watch movie🎬"</div>
+                    <div class="video-description">"Demon Slayer lover 💖"</div>
+                </div>
+            </div>
+
+             <div class="video-card">
+                <video controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <div class="video-title">This video updated soon</div>
+                    <div class="video-description">update soon</div>
+                </div>
             </div>
         </div>
     </section>
@@ -346,60 +626,27 @@
     </section>
 
     <footer>
-         <p>&copy; 2024 Macet Friends Group. All rights reserved.</p>
-        <p style="margin-top: 10px;">Made with ❤️ by friends, for friends</p>
+        <p>&copy; 2024 Macet Friends Group. All rights reserved.</p>
+        <p style="margin-top: 10px;">Made with ❤️ by MD KAMRAN 623/24 CSE(Data Science)</p>
     </footer>
 
-    <!-- Music Control Button -->
-    <button id="musicToggle" style="
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        z-index: 1000;
-        transition: all 0.3s;
-    ">
-        ▶️
-    </button>
-
     <script>
-        // Mobile Menu Toggle
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // Music Play/Pause Button
-        const bgMusic = document.getElementById('bgMusic');
-        const musicToggle = document.getElementById('musicToggle');
-        let isPlaying = false;
-
-        musicToggle.addEventListener('click', () => {
-            if (!isPlaying) {
-                bgMusic.play().catch(err => console.log('Play failed:', err));
-                isPlaying = true;
-                musicToggle.textContent = '🔊';
-            } else {
-                bgMusic.pause();
-                isPlaying = false;
-                musicToggle.textContent = '▶️';
-            }
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    // Close mobile menu after click
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
         });
-
-        musicToggle.addEventListener('mouseenter', () => musicToggle.style.transform = 'scale(1.1)');
-        musicToggle.addEventListener('mouseleave', () => musicToggle.style.transform = 'scale(1)');
     </script>
 </body>
 </html>
-
-
-
-
-
